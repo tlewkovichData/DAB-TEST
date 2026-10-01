@@ -1,0 +1,22 @@
+resources:
+  pipelines:
+    dev_tyler_lewkovich_dev_medallion_cdc_auto_cdc:
+      name: '[dev tyler_lewkovich] [dev] medallion-cdc-auto-cdc'
+      configuration:
+        "demo.catalog": "serverless_stable_4tqt2x_catalog"
+        "demo.schema": "medallion_cdc"
+      libraries:
+        - file:
+            path: ../src/dev_tyler_lewkovich_dev_medallion_cdc_auto_cdc/lakeflow_silver_auto_cdc.sql
+        - file:
+            path: ../src/dev_tyler_lewkovich_dev_medallion_cdc_auto_cdc/lakeflow_gold_enriched.sql
+      catalog: serverless_stable_4tqt2x_catalog
+      channel: CURRENT
+      deployment:
+        kind: BUNDLE
+        metadata_file_path: /Workspace/Users/tyler.lewkovich@databricks.com/.bundle/medallion_cdc_demo/dev/state/metadata.json
+      photon: true
+      schema: medallion_cdc
+      serverless: true
+      tags:
+        dev: tyler_lewkovich
